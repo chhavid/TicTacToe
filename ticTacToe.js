@@ -15,7 +15,7 @@ const isTileOccupied = (game, move) =>
   game.player1.includes(move) || game.player2.includes(move);
 
 const isMoveValid = function (game, move) {
-  if (move > 9 || move < 1) {
+  if (!(/^[1-9]$/).test(move)) {
     return false;
   }
   return !isTileOccupied(game, move);
