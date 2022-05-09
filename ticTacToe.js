@@ -23,7 +23,6 @@ const isMoveValid = function (game, move) {
 
 const gameOver = function (game) {
   game.gameOver = true;
-  saveGame(game);
 };
 
 const hasPlayerWon = function (game) {
@@ -53,7 +52,6 @@ const addMove = function (game, move) {
 };
 
 const saveGame = function (game) {
-  changePlayer(game);
   fs.writeFileSync('ticTacToe.json', JSON.stringify(game, null, 2), 'utf8');
 };
 
@@ -61,7 +59,8 @@ const main = function () {
   const position = +process.argv[2];
   const game = JSON.parse(fs.readFileSync('ticTacToe.json', 'utf8'));
   addMove(game, position);
-  isGameOver(game) ? gameOver(game) : saveGame(game);
+  isGameOver(game) ? gameOver(game) : changePlayer(game);
+  saveGame(game);
 };
 
 main();
