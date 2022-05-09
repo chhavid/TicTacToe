@@ -1,0 +1,13 @@
+{
+  "player1": [
+    1,
+    2,
+    3
+  ],
+  "player2": [
+    7,
+    9
+  ],
+  "currentPlayer": "player2",
+  "gameOver": true
+}
