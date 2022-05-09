@@ -25,10 +25,14 @@ const gameOver = function (game) {
   game.gameOver = true;
 };
 
-const hasPlayerWon = function (game) {
+const isWinningPosition = function (game, winningCombo) {
   const player = game.currentPlayer;
+  return winningCombo.every((tile) => game[player].includes(tile));
+};
+
+const hasPlayerWon = function (game) {
   for (let index = 0; index < winningPositions.length; index++) {
-    if (winningPositions[index].every((pos) => game[player].includes(pos))) {
+    if (isWinningPosition(game, winningPositions[index])) {
       console.log(game.currentPlayer, 'won');
       return true;
     }
@@ -44,10 +48,6 @@ const isGameOver = function (game) {
 };
 
 const addMove = function (game, move) {
-  if (!isMoveValid(game, move)) {
-    console.log('Invalid move');
-    return;
-  }
   game[game.currentPlayer].push(move);
 };
 
@@ -55,11 +55,19 @@ const saveGame = function (game) {
   fs.writeFileSync('ticTacToe.json', JSON.stringify(game, null, 2), 'utf8');
 };
 
+const playGame = function (game, move) {
+  if (!isMoveValid(game, move)) {
+    console.log('Invalid move');
+    return;
+  }
+  addMove(game, move);
+  isGameOver(game) ? gameOver(game) : changePlayer(game);
+};
+
 const main = function () {
   const position = +process.argv[2];
   const game = JSON.parse(fs.readFileSync('ticTacToe.json', 'utf8'));
-  addMove(game, position);
-  isGameOver(game) ? gameOver(game) : changePlayer(game);
+  playGame(game, position);
   saveGame(game);
 };
 
