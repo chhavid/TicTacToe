@@ -1,0 +1,25 @@
+body {
+  background-color: azure;
+  width: 400px;
+  margin: 10em auto;
+}
+
+.wrapper {
+  text-align: "centre";
+  width: 400px;
+  height: 400px;
+}
+
+.row {
+  display: flex;
+  font-size: 5em;
+  height: 33%;
+}
+
+.column {
+  border: 1px solid black;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

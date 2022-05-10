@@ -11,14 +11,11 @@ const changePlayer = function (game) {
   game.currentPlayer = player === 'player1' ? 'player2' : 'player1';
 };
 
-const isTileOccupied = (game, move) =>
-  game.player1.includes(move) || game.player2.includes(move);
+const isTileEmpty = (game, move) =>
+  !(game.player1.includes(move) || game.player2.includes(move));
 
 const isMoveValid = function (game, move) {
-  if (!(/^[1-9]$/).test(move)) {
-    return false;
-  }
-  return !isTileOccupied(game, move);
+  return (/^[1-9]$/).test(move) && isTileEmpty(game, move);
 };
 
 const gameOver = function (game) {
@@ -40,11 +37,16 @@ const hasPlayerWon = function (game) {
   return false;
 };
 
+const areMovesLeft = function (game) {
+  const maxTiles = 9;
+  return game.player1.length + game.player2.length === maxTiles;
+};
+
 const isGameOver = function (game) {
   if (hasPlayerWon(game)) {
     return true;
   }
-  return game.player1.length + game.player2.length === 9;
+  return areMovesLeft(game);
 };
 
 const addMove = function (game, move) {
