@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const winningPositions = [
+const winningPositions = () => [
   [1, 2, 3], [4, 5, 6], [7, 8, 9],
   [1, 4, 7], [2, 5, 8], [3, 6, 9],
   [1, 5, 9], [3, 5, 7]
@@ -28,8 +28,9 @@ const isWinningPosition = function (game, winningCombo) {
 };
 
 const hasPlayerWon = function (game) {
-  for (let index = 0; index < winningPositions.length; index++) {
-    if (isWinningPosition(game, winningPositions[index])) {
+  const winPositions = winningPositions();
+  for (let index = 0; index < winPositions.length; index++) {
+    if (isWinningPosition(game, winPositions[index])) {
       console.log(game.currentPlayer, 'won');
       return true;
     }
@@ -44,6 +45,7 @@ const areMovesLeft = function (game) {
 
 const isGameOver = function (game) {
   if (hasPlayerWon(game)) {
+    game.isDraw = false;
     return true;
   }
   return areMovesLeft(game);
@@ -66,9 +68,13 @@ const playGame = function (game, move) {
   isGameOver(game) ? gameOver(game) : changePlayer(game);
 };
 
+const getObject = function (file) {
+  return JSON.parse(fs.readFileSync(file, 'utf8'));
+};
+
 const main = function () {
   const position = +process.argv[2];
-  const game = JSON.parse(fs.readFileSync('ticTacToe.json', 'utf8'));
+  const game = getObject('ticTacToe.json');
   playGame(game, position);
   saveGame(game);
 };
