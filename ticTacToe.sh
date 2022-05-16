@@ -9,7 +9,7 @@ while [[ $? == 0 ]]; do
   read -p "Enter the position:" position
   node ticTacToe.js ${position}
   node generateHtml.js ; open ticTacToe.html
-  grep 'false' ticTacToe.json &> /dev/null
+  grep '"gameOver": false' ticTacToe.json &> /dev/null
 done
 
 echo 'Game over'

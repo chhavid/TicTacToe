@@ -46,6 +46,7 @@ const areMovesLeft = function (game) {
 const isGameOver = function (game) {
   if (hasPlayerWon(game)) {
     game.isDraw = false;
+    game.gameOver = true;
     return true;
   }
   return areMovesLeft(game);
