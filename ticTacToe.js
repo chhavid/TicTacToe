@@ -42,10 +42,14 @@ const areMovesLeft = function (game) {
   return game.player1.length + game.player2.length === maxTiles;
 };
 
+const updateResult = function (game) {
+  game.isDraw = false;
+  game.gameOver = true;
+};
+
 const isGameOver = function (game) {
   if (hasPlayerWon(game)) {
-    game.isDraw = false;
-    game.gameOver = true;
+    updateResult(game);
     return true;
   }
   return areMovesLeft(game);
