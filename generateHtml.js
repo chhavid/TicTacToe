@@ -28,14 +28,18 @@ const header = function () {
     '<link rel = "stylesheet" href = "style.css"></head> ';
 };
 
+const gameOver = function (game) {
+  let content = 'Game Over!! \n ' + game.currentPlayer + ' won';
+  if (game.isDraw) {
+    content = 'Game Draw!!';
+  }
+  return generateTag('div', 'game-over', content);
+};
+
 const body = function (game) {
   let div = generateTag('div', 'wrapper', generateRows(game));
   if (game.gameOver) {
-    let content = 'Game Over!! \n ' + game.currentPlayer + ' won';
-    if (game.isDraw) {
-      content = 'Game Draw!!';
-    }
-    div += generateTag('div', 'game-over', content);
+    div += gameOver(game);
   }
   return generateTag('body', '', div);
 };
