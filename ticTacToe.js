@@ -56,7 +56,11 @@ const addMove = function (game, move) {
 };
 
 const saveGame = function (game) {
-  fs.writeFileSync('ticTacToe.json', JSON.stringify(game, null, 2), 'utf8');
+  try {
+    fs.writeFileSync('ticTacToe.json', JSON.stringify(game, null, 2), 'utf8');
+  } catch (error) {
+    throw 'Could not write file.';
+  }
 };
 
 const playGame = function (game, move) {
@@ -69,7 +73,11 @@ const playGame = function (game, move) {
 };
 
 const getObject = function (file) {
-  return JSON.parse(fs.readFileSync(file, 'utf8'));
+  try {
+    return JSON.parse(fs.readFileSync(file, 'utf8'));
+  } catch (error) {
+    throw 'Invalid file';
+  }
 };
 
 const main = function () {
