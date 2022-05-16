@@ -14,9 +14,8 @@ const changePlayer = function (game) {
 const isTileEmpty = (game, move) =>
   !(game.player1.includes(move) || game.player2.includes(move));
 
-const isMoveValid = function (game, move) {
-  return (/^[1-9]$/).test(move) && isTileEmpty(game, move);
-};
+const isMoveValid = (game, move) =>
+  (/^[1-9]$/).test(move) && isTileEmpty(game, move);
 
 const gameOver = function (game) {
   game.gameOver = true;
