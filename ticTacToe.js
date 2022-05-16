@@ -31,7 +31,6 @@ const hasPlayerWon = function (game) {
   const winPositions = winningPositions();
   for (let index = 0; index < winPositions.length; index++) {
     if (isWinningPosition(game, winPositions[index])) {
-      console.log(game.currentPlayer, 'won');
       return true;
     }
   }
