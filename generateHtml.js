@@ -6,9 +6,9 @@ const generateTag = function (tag, tagClass, content = ' ') {
 
 const getSymbol = function (game, tile) {
   if (game.player1.includes(tile)) {
-    return '⚫️';
+    return 'O';
   }
-  return game.player2.includes(tile) ? '⤬' : ' ';
+  return game.player2.includes(tile) ? 'X' : ' ';
 };
 
 const singleRow = function (game, tiles) {
@@ -25,7 +25,8 @@ const generateRows = function (game) {
 
 const header = function () {
   return '<head><title>Tic Tac Toe</title>' +
-    '<link rel = "stylesheet" href = "style.css"></head> ';
+    '<link rel = "stylesheet" href = "style.css">' +
+    '<meta http-equiv="refresh" content="1"></head>';
 };
 
 const gameOver = function (game) {

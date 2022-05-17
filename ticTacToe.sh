@@ -8,7 +8,7 @@ while [[ $? == 0 ]]; do
   echo $name
   read -p "Enter the position:" position
   node ticTacToe.js ${position}
-  node generateHtml.js ; open ticTacToe.html
+  node generateHtml.js 
   grep '"gameOver": false' ticTacToe.json &> /dev/null
 done
 
