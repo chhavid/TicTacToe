@@ -25,7 +25,7 @@ const generateRows = function (game) {
 
 const header = function () {
   return '<head><title>Tic Tac Toe</title>' +
-    '<link rel = "stylesheet" href = "style.css">' +
+    '<link rel = "stylesheet" href = "./src/style.css">' +
     '<meta http-equiv="refresh" content="1"></head>';
 };
 
@@ -50,7 +50,7 @@ const generateHtml = function (game) {
 };
 
 const main = function () {
-  const game = JSON.parse(fs.readFileSync('ticTacToe.json', 'utf-8'));
+  const game = JSON.parse(fs.readFileSync('./src/ticTacToe.json', 'utf-8'));
   fs.writeFileSync('ticTacToe.html', generateHtml(game), 'utf8');
 };
 

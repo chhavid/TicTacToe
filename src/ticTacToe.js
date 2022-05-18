@@ -60,7 +60,7 @@ const addMove = function (game, move) {
 
 const saveGame = function (game) {
   try {
-    fs.writeFileSync('ticTacToe.json', JSON.stringify(game, null, 2), 'utf8');
+    fs.writeFileSync('./src/ticTacToe.json', JSON.stringify(game, null, 2), 'utf8');
   } catch (error) {
     throw 'Could not write file.';
   }
@@ -85,7 +85,7 @@ const getObject = function (file) {
 
 const main = function () {
   const position = +process.argv[2];
-  const game = getObject('ticTacToe.json');
+  const game = getObject('./src/ticTacToe.json');
   playGame(game, position);
   saveGame(game);
 };
